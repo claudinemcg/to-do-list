@@ -13,9 +13,14 @@ class TodoListMaker extends Component {
     this.setState({todos: [...this.state.todos, newTodo]});
   }
 
+  deleteTodo = (id) => {
+    const newTodos = this.state.todos.filter(todo => todo.id != id)
+    this.setState({todos: [...newTodos]})
+  }
+
   render(){
     const todos = this.state.todos.map(todo => (
-      <li><Todo key={todo.id} id={todo.id} todo={todo.name} /></li>
+      <li><Todo key={todo.id} id={todo.id} todo={todo.task} deleteTodo={this.deleteTodo}/></li>
   ));
     return(
       <div className="TodoList">

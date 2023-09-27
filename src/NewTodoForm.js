@@ -14,18 +14,18 @@ class NewTodoForm extends Component {
     evt.preventDefault();
     this.props.addTodo(this.state)
     this.setState({name: ''})
-
   }
 
   render() {
     return(
       <div>
       <form onSubmit={this.handleSubmit}>
-        <label htmlFor='name'>Todo: </label>
+        <label htmlFor='task'>Todo: </label>
         <input  type='text'
-                name='name'
-                id='name'
-                value={this.state.name}
+                placeholder='new todo'
+                name='task'
+                id='task'
+                value={this.state.task}
                 onChange={this.handleChange}
         />
 
