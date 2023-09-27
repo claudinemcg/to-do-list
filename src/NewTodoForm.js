@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class NewTodoForm extends Component {
   state = { 
-    name: ''
+    task: ''
   }
 
 
@@ -13,7 +13,7 @@ class NewTodoForm extends Component {
   handleSubmit = (evt) => {
     evt.preventDefault();
     this.props.addTodo(this.state)
-    this.setState({name: ''})
+    this.setState({task: ''})
   }
 
   render() {

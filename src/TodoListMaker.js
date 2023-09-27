@@ -18,9 +18,19 @@ class TodoListMaker extends Component {
     this.setState({todos: [...newTodos]})
   }
 
+  updateTask = (id, updatedTask) => {
+    const updatedTodos = this.state.todos.map(todo => {
+      if (todo.id === id) {
+        return{... todo, task: updatedTask};
+      }
+      return todo;
+    })
+    this.setState({ todos: updatedTodos})
+  }
+
   render(){
     const todos = this.state.todos.map(todo => (
-      <li><Todo key={todo.id} id={todo.id} todo={todo.task} deleteTodo={this.deleteTodo}/></li>
+      <li><Todo key={todo.id} id={todo.id} task={todo.task} deleteTodo={this.deleteTodo} updateTask={this.updateTask}/></li>
   ));
     return(
       <div className="TodoList">
