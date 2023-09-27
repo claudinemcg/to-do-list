@@ -6,7 +6,7 @@ class Todo extends Component {
   render(){
     return(
       <div className="Todo">
-        {this.props.name}
+        {this.props.todo}
       </div>
     )
   }

@@ -1,9 +1,10 @@
 import './App.css';
+import TodoListMaker from './TodoListMaker';
 
 function App() {
   return (
     <div className="App">
-      <TodoList />
+      <TodoListMaker />
     </div>
   );
 }
