@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import Todo from './Todo';
 import NewTodoForm from './NewTodoForm';
 import {v4 as uuidv4} from 'uuid';
-
+import './TodoListMaker.css'
 class TodoListMaker extends Component {
   state = {
     todos: []
   }
 
   addTodo = (todo) => {
-    let newTodo = {...todo, id: uuidv4()};
+    let newTodo = {...todo, id: uuidv4(), completed: false};
     this.setState({todos: [...this.state.todos, newTodo]});
   }
 
@@ -28,16 +28,35 @@ class TodoListMaker extends Component {
     this.setState({ todos: updatedTodos})
   }
 
+  toggleTodo = (id) => {
+    const updatedTodos = this.state.todos.map(todo => {
+      if (todo.id === id) {
+        return{... todo, completed: !todo.completed};
+      }
+      return todo;
+    })
+    this.setState({ todos: updatedTodos})
+  }
+  
+
   render(){
     const todos = this.state.todos.map(todo => (
-      <li><Todo key={todo.id} id={todo.id} task={todo.task} deleteTodo={this.deleteTodo} updateTask={this.updateTask}/></li>
+      <Todo   key={todo.id} 
+              id={todo.id} 
+              task={todo.task} 
+              completed={todo.completed}
+              deleteTodo={this.deleteTodo} 
+              updateTask={this.updateTask} 
+              toggleTodo={this.toggleTodo}
+      />
   ));
     return(
-      <div className="TodoList">
-        <ul>
-          {todos}
-        </ul>
+        <div className="TodoList">
+        <h1>TODO LIST</h1>
         <NewTodoForm addTodo={this.addTodo}/>
+          <ul>
+            {todos}
+          </ul>
       </div>
     )
   }

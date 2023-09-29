@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import NewTodoForm from './NewTodoForm';
+import './Todo.css'
+import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faPenToSquare, faTrashCan, faFloppyDisk} from '@fortawesome/free-solid-svg-icons';
 
 class Todo extends Component {
   state = {
@@ -24,11 +26,15 @@ class Todo extends Component {
     this.setState({ [evt.target.name]: evt.target.value})
   }
 
+  handleCompleted = () => {
+    this.props.toggleTodo(this.props.id);
+  }
+
   render(){
     let result;
     if (this.state.isEditing) {
       result = (
-        <div>
+        <div className='Todo-edit'>
           <form onSubmit={this.handleUpdate}>
             <input  type='text' 
                     name='task'
@@ -36,16 +42,22 @@ class Todo extends Component {
                     value={this.state.task}
                     onChange={this.handleChange}
             />
-            <button>Save</button>
+            <button className='Todo-submit'><FontAwesomeIcon icon={faFloppyDisk} /></button>
           </form>
         </div>
       )
     } else {
       result = (
         <div className="Todo">
-          {this.props.task}
-          <button onClick={this.handleDelete}> X </button>
-          <button onClick={this.toggleForm}> edit </button>
+          
+          <li   className={this.props.completed ? 'todoCompleted' : ''} 
+                onClick={this.handleCompleted}>
+                  {this.props.task}
+          </li>
+         
+            <div onClick={this.handleDelete} className='Todo-delete'><FontAwesomeIcon icon={faTrashCan} /></div>
+            <div onClick={this.toggleForm} className='Todo-edit'> <FontAwesomeIcon icon={faPenToSquare} /> </div>
+ 
           </div>
         )
     }

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-
+import './NewFormTodo.css'
 class NewTodoForm extends Component {
   state = { 
     task: ''
   }
-
 
   handleChange = (evt) => {
     this.setState({[evt.target.name]: evt.target.value } )
@@ -18,9 +17,10 @@ class NewTodoForm extends Component {
 
   render() {
     return(
-      <div>
+
+        <div className='Todo-new'>
       <form onSubmit={this.handleSubmit}>
-        <label htmlFor='task'>Todo: </label>
+        <label htmlFor='task'> </label>
         <input  type='text'
                 placeholder='new todo'
                 name='task'
@@ -29,7 +29,7 @@ class NewTodoForm extends Component {
                 onChange={this.handleChange}
         />
 
-        <button>Add Todo</button>
+        <button></button>
       </form>
       </div>
     )
