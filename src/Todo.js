@@ -55,8 +55,8 @@ class Todo extends Component {
                   {this.props.task}
           </li>
          
-            <div onClick={this.handleDelete} className='Todo-delete'><FontAwesomeIcon icon={faTrashCan} /></div>
-            <div onClick={this.toggleForm} className='Todo-edit'> <FontAwesomeIcon icon={faPenToSquare} /> </div>
+            <div onClick={this.handleDelete} className='Todo-delete-btn'><FontAwesomeIcon icon={faTrashCan} /></div>
+            <div onClick={this.toggleForm} className='Todo-edit-btn'> <FontAwesomeIcon icon={faPenToSquare} /> </div>
  
           </div>
         )
